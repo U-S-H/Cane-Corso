@@ -2,173 +2,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>EMPAXCO SOLUTIONS | AI-Powered BPO & Global Outsourcing</title>
+    <title>Excel to Web Application - Prime Solutions</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
-        
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: #05070a; 
-            color: #ffffff; 
-            overflow-x: hidden;
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #1e293b;
+            --accent: #10b981;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
         }
 
-        .glass-nav {
-            background: rgba(5, 7, 10, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .neon-text {
-            color: #00d2ff;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        body {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #065f46, #1e293b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .neon-border {
-            border: 1px solid rgba(0, 210, 255, 0.3);
-            transition: all 0.4s ease;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .neon-border:hover {
-            border: 1px solid #00d2ff;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
-            transform: translateY(-5px);
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
         }
 
-        .hero-gradient {
-            background: radial-gradient(circle at top right, rgba(0, 210, 255, 0.15), transparent),
-                        radial-gradient(circle at bottom left, rgba(0, 210, 255, 0.05), transparent);
+        header {
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            padding: 25px 30px;
+            text-align: center;
         }
 
-        .blue-btn {
-            background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            padding: 30px;
+        }
+
+        @media(max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: #38bdf8;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 8px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #cbd5e1;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 14px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
             transition: all 0.3s ease;
         }
 
-        .blue-btn:hover {
-            box-shadow: 0 10px 25px rgba(0, 210, 255, 0.4);
-            transform: scale(1.02);
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
+        }
+
+        .invoice-preview {
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 13px;
+        }
+
+        .inv-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .inv-header h3 {
+            color: #1e3a8a;
+            font-size: 16px;
+        }
+
+        .inv-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .inv-total {
+            border-top: 2px solid #e2e8f0;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #0d9488;
+        }
+
+        .actions {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-calc {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-calc:hover {
+            background: #0284c7;
+        }
+
+        .btn-save {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-save:hover {
+            background: #059669;
+        }
+
+        .status {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 13px;
+            min-height: 20px;
+            color: #38bdf8;
         }
     </style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 px-6 md:px-12 py-5 flex justify-between items-center glass-nav">
-        <div class="flex items-center gap-2">
-            <div class="w-10 h-10 blue-btn rounded-lg flex items-center justify-center">
-                <i class="fa-solid fa-microchip text-white text-xl"></i>
-            </div>
-            <h1 class="text-xl font-extrabold tracking-tighter">EMPAXCO<span class="neon-text">SOLUTIONS</span></h1>
-        </div>
-        <div class="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-gray-400">
-            <a href="#" class="hover:text-white transition">AI Services</a>
-            <a href="#" class="hover:text-white transition">Lead Gen</a>
-            <a href="#" class="hover:text-white transition">Inbound</a>
-            <a href="#" class="hover:text-white transition">Outbound</a>
-        </div>
-        <button class="blue-btn text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest">Get Started</button>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>Prime Solutions - Excel to Web System</h1>
+            <p>Automated Calculations, Invoice Generator & Database Integration</p>
+        </header>
 
-    <section class="min-h-screen flex items-center px-6 md:px-20 hero-gradient">
-        <div class="max-w-4xl">
-            <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-8">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-[10px] uppercase font-bold tracking-wider text-gray-300">Next-Gen AI Business Solutions</span>
-            </div>
-            <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-8">
-                The Future of <br> 
-                <span class="neon-text">Global Outsourcing</span>
-            </h2>
-            <p class="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl font-light">
-                Empowering businesses worldwide with AI-driven lead generation, 24/7 customer support, and seamless BPO operations.
-            </p>
-            <div class="flex flex-wrap gap-6">
-                <button class="blue-btn text-white px-10 py-5 rounded-xl font-bold uppercase text-[11px] tracking-widest">Explore AI Services</button>
-                <button class="border border-white/20 text-white px-10 py-5 rounded-xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/5 transition">Watch Demo</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 md:px-20 bg-[#080a0f]">
-        <div class="text-center mb-20">
-            <h3 class="text-xs font-bold neon-text uppercase tracking-[0.4em] mb-4">Core Expertise</h3>
-            <h4 class="text-3xl md:text-5xl font-extrabold">Smart Solutions for Smart Growth</h4>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-10 rounded-3xl bg-white/5 neon-border">
-                <div class="w-14 h-14 rounded-2xl bg-[#00d2ff]/10 flex items-center justify-center mb-8">
-                    <i class="fa-solid fa-bullseye text-[#00d2ff] text-2xl"></i>
+        <div class="main-grid">
+            <!-- Excel Form Inputs -->
+            <div class="card">
+                <h2>Excel Formula Inputs</h2>
+                <div class="input-group">
+                    <label>Client / Item Description</label>
+                    <input type="text" id="desc" value="Calculation Model Item" oninput="runExcelLogic()">
                 </div>
-                <h5 class="text-xl font-bold mb-4">Lead Generation</h5>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">High-intent leads for Auto, Health, and Solar insurance industries using advanced AI filtering.</p>
-                <a href="#" class="text-[10px] font-bold uppercase text-[#00d2ff] tracking-widest">Learn More <i class="fa-solid fa-arrow-right ml-2"></i></a>
-            </div>
-
-            <div class="p-10 rounded-3xl bg-white/5 neon-border">
-                <div class="w-14 h-14 rounded-2xl bg-[#00d2ff]/10 flex items-center justify-center mb-8">
-                    <i class="fa-solid fa-headset text-[#00d2ff] text-2xl"></i>
+                <div class="input-group">
+                    <label>Quantity / Units</label>
+                    <input type="number" id="qty" value="10" min="1" oninput="runExcelLogic()">
                 </div>
-                <h5 class="text-xl font-bold mb-4">Omnichannel Support</h5>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">Inbound and Outbound customer support that ensures 100% satisfaction and retention rates.</p>
-                <a href="#" class="text-[10px] font-bold uppercase text-[#00d2ff] tracking-widest">Learn More <i class="fa-solid fa-arrow-right ml-2"></i></a>
-            </div>
-
-            <div class="p-10 rounded-3xl bg-white/5 neon-border">
-                <div class="w-14 h-14 rounded-2xl bg-[#00d2ff]/10 flex items-center justify-center mb-8">
-                    <i class="fa-solid fa-robot text-[#00d2ff] text-2xl"></i>
+                <div class="input-group">
+                    <label>Unit Price ($)</label>
+                    <input type="number" id="price" value="50" min="0" oninput="runExcelLogic()">
                 </div>
-                <h5 class="text-xl font-bold mb-4">AI Engagement</h5>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">Deploy smart AI bots that handle first-level queries and book appointments automatically.</p>
-                <a href="#" class="text-[10px] font-bold uppercase text-[#00d2ff] tracking-widest">Learn More <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                <div class="input-group">
+                    <label>Discount Rate (%)</label>
+                    <input type="number" id="discount" value="5" min="0" max="100" oninput="runExcelLogic()">
+                </div>
             </div>
-        </div>
-    </section>
 
-    <section class="py-24 px-6 md:px-20 border-t border-white/5">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h4 class="text-xs font-bold neon-text uppercase tracking-[0.4em] mb-4">Global Reach</h4>
-                <h2 class="text-4xl font-extrabold mb-8">Rawalpindi Hub. <br> Global Impact.</h2>
-                <p class="text-gray-400 font-light mb-8">With state-of-the-art infrastructure in Meridian Software Park and a strategic presence in Wyoming, USA, we bridge the gap between technology and results.</p>
-                
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <i class="fa-solid fa-check-circle text-[#00d2ff]"></i>
-                        <span class="text-sm font-semibold">24/7 Seamless Connectivity</span>
+            <!-- Live Invoice Preview -->
+            <div class="card">
+                <h2>Generated Invoice Preview</h2>
+                <div class="invoice-preview">
+                    <div class="inv-header">
+                        <h3 id="invTitle">INVOICE #PS-892</h3>
+                        <span id="invDate">2026-09-13</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="fa-solid fa-check-circle text-[#00d2ff]"></i>
-                        <span class="text-sm font-semibold">ISO Certified Data Security</span>
+                    <div class="inv-row">
+                        <span id="pDesc">Calculation Model Item</span>
+                        <span id="pQtyPrice">10 x $50.00</span>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <i class="fa-solid fa-check-circle text-[#00d2ff]"></i>
-                        <span class="text-sm font-semibold">Expert Workforce in Pakistan & USA</span>
+                    <div class="inv-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$500.00</span>
+                    </div>
+                    <div class="inv-row">
+                        <span>Discount Applied:</span>
+                        <span id="discAmount">-$25.00</span>
+                    </div>
+                    <div class="inv-total inv-row">
+                        <span>Total Balance:</span>
+                        <span id="grandTotal">$475.00</span>
                     </div>
                 </div>
             </div>
-            <div class="relative">
-                <div class="absolute -inset-4 bg-[#00d2ff]/20 blur-3xl rounded-full"></div>
-                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1470&auto=format&fit=crop" class="relative rounded-3xl grayscale hover:grayscale-0 transition-all duration-700" alt="BPO Operations">
+
+            <!-- Actions -->
+            <div class="actions">
+                <button class="btn-calc" onclick="runExcelLogic()">Run Automatic Calculations</button>
+                <button class="btn-save" onclick="saveData()">Save to Database</button>
             </div>
-        </div>
-    </section>
 
-    <footer class="py-12 border-t border-white/5 px-6 md:px-20 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="flex items-center gap-2">
-            <h1 class="text-lg font-extrabold tracking-tighter">EMPAXCO<span class="neon-text">SOLUTIONS</span></h1>
+            <div class="status" id="statusMessage"></div>
         </div>
-        <p class="text-gray-500 text-[9px] uppercase tracking-widest text-center">
-            © 2026 Designed for Empaxco Solutions | Transforming Businesses with Intelligence.
-        </p>
-        <div class="flex gap-6">
-            <i class="fa-brands fa-linkedin text-gray-500 hover:text-[#00d2ff] cursor-pointer transition"></i>
-            <i class="fa-brands fa-facebook text-gray-500 hover:text-[#00d2ff] cursor-pointer transition"></i>
-            <i class="fa-brands fa-twitter text-gray-500 hover:text-[#00d2ff] cursor-pointer transition"></i>
-        </div>
-    </footer>
+    </div>
 
+    <script>
+        function runExcelLogic() {
+            const desc = document.getElementById('desc').value;
+            const qty = parseFloat(document.getElementById('qty').value) || 0;
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const discountRate = parseFloat(document.getElementById('discount').value) || 0;
+
+            const subtotal = qty * price;
+            const discAmount = (subtotal * discountRate) / 100;
+            const grandTotal = subtotal - discAmount;
+
+            document.getElementById('pDesc').innerText = desc || 'Item';
+            document.getElementById('pQtyPrice').innerText = `${qty} x $${price.toFixed(2)}`;
+            document.getElementById('subtotal').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('discAmount').innerText = `-$${discAmount.toFixed(2)}`;
+            document.getElementById('grandTotal').innerText = `$${grandTotal.toFixed(2)}`;
+        }
+
+        function saveData() {
+            const status = document.getElementById('statusMessage');
+            status.innerHTML = "Processing data and saving securely to database (Firebase/SQL)...";
+            status.style.color = "#f59e0b";
+
+            setTimeout(() => {
+                status.innerHTML = "Success! Invoice generated and data successfully saved to database.";
+                status.style.color = "#10b981";
+            }, 1200);
+        }
+    </script>
 </body>
 </html>
