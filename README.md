@@ -283,7 +283,7 @@
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
-            justify-content: space-around;
+            justify-style: space-around;
             padding: 10px 0;
             z-index: 1000;
         }
