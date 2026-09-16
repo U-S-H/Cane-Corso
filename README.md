@@ -72,17 +72,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 75px;
         }
 
         .logo {
             font-family: 'Cinzel', serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--white);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             letter-spacing: 1px;
         }
 
@@ -112,7 +112,7 @@
         .btn {
             background-color: var(--primary);
             color: var(--bg-dark);
-            padding: 10px 24px;
+            padding: 10px 22px;
             border-radius: 4px;
             font-weight: 600;
             font-size: 12px;
@@ -141,23 +141,23 @@
 
         /* Hero Section */
         .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), 
+            padding: 140px 0 80px;
+            background: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.95)), 
                         url('https://images.unsplash.com/photo-1600804340584-c7db2eacf0bf?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
-            min-height: 90vh;
+            min-height: auto;
             display: flex;
             align-items: center;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
         }
 
         .hero-content h1 {
-            font-size: 44px;
+            font-size: 42px;
             color: var(--white);
             margin-bottom: 20px;
             line-height: 1.1;
@@ -170,7 +170,7 @@
         .hero-content p {
             color: var(--text-muted);
             font-size: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .hero-btns {
@@ -200,7 +200,7 @@
         }
 
         .hero-badge {
-            background: rgba(26, 26, 26, 0.85);
+            background: rgba(26, 26, 26, 0.9);
             border: 1px solid rgba(197, 160, 89, 0.3);
             padding: 25px;
             border-radius: 8px;
@@ -221,18 +221,18 @@
 
         /* Section Layouts */
         .section-padding {
-            padding: 90px 0;
+            padding: 75px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 45px;
         }
 
         .section-title h2 {
-            font-size: 32px;
+            font-size: 30px;
             color: var(--white);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .section-title p {
@@ -252,43 +252,22 @@
         .feature-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 35px 25px;
+            padding: 30px 20px;
             border-radius: 8px;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--primary);
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(197, 160, 89, 0.3);
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
         .feature-card i {
-            font-size: 32px;
+            font-size: 30px;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .feature-card h3 {
-            font-size: 18px;
-            margin-bottom: 12px;
+            font-size: 17px;
+            margin-bottom: 10px;
             color: var(--white);
         }
 
@@ -315,16 +294,10 @@
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
         }
 
         .gallery-img {
-            height: 260px;
+            height: 240px;
             width: 100%;
             object-fit: cover;
         }
@@ -334,16 +307,15 @@
         }
 
         .gallery-info h3 {
-            font-size: 17px;
+            font-size: 16px;
             color: var(--white);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .gallery-info p {
             color: var(--primary);
             font-weight: 500;
             font-size: 12px;
-            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -371,20 +343,20 @@
             background-color: var(--bg-card);
             color: var(--primary);
             border: 1px solid rgba(197, 160, 89, 0.2);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         .standard-text h3 {
-            font-size: 17px;
+            font-size: 16px;
             color: var(--white);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .standard-text p {
@@ -396,8 +368,7 @@
             width: 100%;
             border-radius: 8px;
             border: 1px solid rgba(197, 160, 89, 0.2);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            height: 400px;
+            height: 350px;
             object-fit: cover;
         }
 
@@ -410,24 +381,24 @@
             max-width: 700px;
             margin: 0 auto;
             background: var(--bg-dark);
-            padding: 40px;
+            padding: 35px;
             border-radius: 10px;
             border: 1px solid rgba(197, 160, 89, 0.2);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 18px;
         }
 
         .form-control {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 6px;
@@ -435,26 +406,20 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 13px;
             outline: none;
-            transition: var(--transition);
         }
 
         .form-control:focus {
             border-color: var(--primary);
-            background: var(--bg-lighter);
-        }
-
-        .form-control::placeholder {
-            color: #666;
         }
 
         textarea.form-control {
             resize: vertical;
-            height: 120px;
+            height: 110px;
         }
 
         .contact-form .btn {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             font-size: 13px;
         }
 
@@ -462,7 +427,7 @@
         footer {
             background-color: var(--bg-dark);
             color: var(--text-muted);
-            padding: 30px 0;
+            padding: 25px 0;
             text-align: center;
             font-size: 12px;
             border-top: 1px solid rgba(255,255,255,0.05);
@@ -472,46 +437,42 @@
             color: var(--primary);
         }
 
-        /* Responsive Media Queries */
-        @media (max-width: 992px) {
-            .hero-grid, .standards-grid {
-                grid-template-columns: 1fr;
+        /* FULL MOBILE OPTIMIZATION FIX */
+        @media screen and (max-width: 768px) {
+            .hero-grid, 
+            .standards-grid, 
+            .features-grid, 
+            .gallery-grid, 
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+
+            .hero {
+                padding: 120px 0 50px;
                 text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
             }
 
             .hero-btns {
                 justify-content: center;
             }
 
-            .features-grid, .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .standard-item {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .standards-image img {
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 80px;
+                top: 75px;
                 left: 0;
                 width: 100%;
                 background: var(--bg-dark);
-                padding: 25px 0;
+                padding: 20px 0;
                 border-bottom: 1px solid rgba(197, 160, 89, 0.2);
                 text-align: center;
-                gap: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                gap: 15px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
             }
 
             .nav-links.active {
@@ -522,25 +483,16 @@
                 display: block;
             }
 
-            .features-grid, .gallery-grid, .form-row {
-                grid-template-columns: 1fr;
+            .section-title h2 {
+                font-size: 24px;
             }
 
-            .hero {
-                padding: 130px 0 70px;
-                min-height: auto;
-            }
-
-            .hero-content h1 {
-                font-size: 32px;
-            }
-            
             .contact-form {
                 padding: 20px;
             }
 
-            .section-title h2 {
-                font-size: 26px;
+            .standards-image img {
+                height: 250px;
             }
         }
     </style>
@@ -649,7 +601,7 @@
         <div class="container">
             <div class="standards-grid">
                 <div class="standards-list">
-                    <div class="section-title" style="text-align: left; margin-bottom: 25px;">
+                    <div class="section-title" style="text-align: left; margin-bottom: 20px;">
                         <h2>Breeding Standards</h2>
                         <p style="margin: 0; text-align: left;">We uphold rigorous health and genetic criteria to preserve the integrity of the breed.</p>
                     </div>
