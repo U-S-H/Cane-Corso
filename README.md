@@ -1,558 +1,710 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Solutions - App Demo</title>
+    <title>IronGuard Cane Corso | Elite Italian Mastiffs</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-gradient: linear-gradient(-45deg, #0f172a, #1e1b4b, #065f46, #1e293b);
-            --card-bg: rgba(30, 41, 59, 0.82);
-            --text-color: #f8fafc;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --primary: #0ea5e9;
-            --primary-hover: #0284c7;
-            --accent: #10b981;
-            --accent-hover: #059669;
-            --input-bg: #0f172a;
-            --input-border: #334155;
-        }
-
-        .light-mode {
-            --bg-gradient: linear-gradient(-45deg, #f8fafc, #e2e8f0, #ccfbf1, #f1f5f9);
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --text-color: #0f172a;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --primary: #0284c7;
-            --primary-hover: #0369a1;
-            --accent: #059669;
-            --accent-hover: #047857;
-            --input-bg: #ffffff;
-            --input-border: #cbd5e1;
+            --primary: #c5a059;
+            --primary-dark: #a4823f;
+            --bg-dark: #121212;
+            --bg-card: #1a1a1a;
+            --bg-lighter: #222222;
+            --text-main: #e0e0e0;
+            --text-muted: #999999;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        /* Splash Screen / App Loading */
-        #splash-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #0f172a;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            color: #fff;
-            transition: opacity 0.5s ease;
-        }
-
-        .app-logo-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
-            animation: bounce 1.5s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        #splash-screen h1 { font-size: 22px; font-weight: 700; color: #38bdf8; margin-bottom: 5px; }
-        #splash-screen p { font-size: 13px; opacity: 0.8; margin-bottom: 20px; }
-
-        .loader-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .loader-progress {
-            width: 0%;
-            height: 100%;
-            background: #0ea5e9;
-            animation: loadProgress 1.8s forwards;
-        }
-
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: var(--bg-gradient);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--text-color);
-            min-height: 100vh;
-            padding: 15px 15px 70px 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
         }
 
         .container {
-            width: 100%;
-            max-width: 950px;
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
-            overflow: hidden;
-            margin-bottom: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
+        /* Header & Navigation */
         header {
-            background: linear-gradient(135deg, #0284c7, #0d9488);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #fff;
-        }
-
-        .app-title-area { display: flex; align-items: center; gap: 10px; }
-        .app-icon { font-size: 24px; }
-        header h1 { font-size: 18px; font-weight: 700; }
-        header p { font-size: 11px; opacity: 0.9; }
-
-        .theme-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 6px 12px;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-        }
-        .theme-btn:hover { background: rgba(255, 255, 255, 0.3); }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            padding: 20px;
-        }
-
-        @media(max-width: 768px) {
-            .main-grid { grid-template-columns: 1fr; }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
-        }
-
-        h2 {
-            font-size: 13px;
-            color: var(--primary);
-            margin-bottom: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
-
-        .input-group { margin-bottom: 8px; }
-        label { display: block; font-size: 11px; margin-bottom: 2px; opacity: 0.9; }
-        input, select {
-            width: 100%;
-            padding: 7px 10px;
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            border-radius: 8px;
-            color: var(--text-color);
-            font-size: 12px;
-        }
-
-        .file-upload-box {
-            border: 2px dashed var(--primary);
-            padding: 10px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 11px;
-            margin-bottom: 10px;
-            background: rgba(14, 165, 233, 0.05);
-        }
-
-        .invoice-preview {
-            background: #ffffff;
-            color: #0f172a;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 11px;
-        }
-
-        .inv-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 5px;
-            margin-bottom: 8px;
-        }
-        .inv-header h3 { color: #1e3a8a; font-size: 13px; }
-
-        .inv-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4px;
-        }
-
-        .inv-total {
-            border-top: 2px solid #e2e8f0;
-            padding-top: 5px;
-            margin-top: 5px;
-            font-weight: bold;
-            font-size: 12px;
-            color: #0d9488;
-        }
-
-        .sig-container { margin-top: 8px; }
-        canvas#sigCanvas {
-            width: 100%;
-            height: 45px;
-            background: #ffffff;
-            border: 1px solid var(--input-border);
-            border-radius: 6px;
-            cursor: crosshair;
-        }
-
-        .actions {
-            grid-column: 1 / -1;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        button.action-btn {
-            flex: 1;
-            padding: 9px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 11px;
-            cursor: pointer;
-        }
-
-        .btn-calc { background: var(--primary); color: white; }
-        .btn-save { background: var(--accent); color: white; }
-        .btn-pdf { background: #6366f1; color: white; }
-        .btn-email { background: #ec4899; color: white; }
-
-        .status {
-            grid-column: 1 / -1;
-            text-align: center;
-            font-size: 11px;
-            min-height: 15px;
-            color: var(--primary);
-        }
-
-        .history-section {
-            grid-column: 1 / -1;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
-        }
-
-        table { width: 100%; border-collapse: collapse; font-size: 11px; margin-top: 6px; }
-        th, td { padding: 5px 6px; text-align: left; border-bottom: 1px solid var(--border-color); }
-        th { color: var(--primary); font-weight: 600; }
-
-        /* Mobile App Bottom Navigation Bar */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0; left: 0; width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background-color: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-style: space-around;
-            padding: 10px 0;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
         }
 
-        .nav-item {
-            text-align: center;
-            color: #94a3b8;
-            font-size: 10px;
-            cursor: pointer;
-            text-decoration: none;
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
         }
 
-        .nav-item span { display: block; font-size: 16px; margin-bottom: 2px; }
-        .nav-item.active { color: #38bdf8; }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.95)), 
+                        url('https://images.unsplash.com/photo-1600804340584-c7db2eacf0bf?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            min-height: 95vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 52px;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 26px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .hero-badge {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 30px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge h3 {
+            color: var(--primary);
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hero-badge p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Section Layouts */
+        .section-padding {
+            padding: 110px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 15px;
+        }
+
+        /* Features / Traits Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 8px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 89, 0.3);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card i {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Bloodline / Gallery */
+        .gallery-section {
+            background-color: var(--bg-card);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .gallery-item {
+            background: var(--bg-lighter);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .gallery-img {
+            height: 280px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-info {
+            padding: 25px;
+        }
+
+        .gallery-info h3 {
+            font-size: 18px;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .gallery-info p {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Standards Section */
+        .standards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .standards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .standard-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .standard-icon {
+            background-color: var(--bg-card);
+            color: var(--primary);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+
+        .standard-text h3 {
+            font-size: 18px;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .standard-text p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .standards-image img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%);
+        }
+
+        .contact-form {
+            max-width: 750px;
+            margin: 0 auto;
+            background: var(--bg-dark);
+            padding: 50px;
+            border-radius: 12px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--white);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: var(--bg-lighter);
+        }
+
+        .form-control::placeholder {
+            color: #666;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            height: 140px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p span {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-grid, .standards-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .features-grid, .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .standard-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 90px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                padding: 30px 0;
+                border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .features-grid, .gallery-grid, .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen / App Loading Simulator -->
-    <div id="splash-screen">
-        <div class="app-logo-icon">📊</div>
-        <h1>Prime Solutions</h1>
-        <p>Welcome to Excel-to-Web Mobile App Engine</p>
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
-    </div>
-
-    <div class="container">
-        <header>
-            <div class="app-title-area">
-                <span class="app-icon">⚡</span>
-                <div>
-                    <h1>Prime Solutions App</h1>
-                    <p>Excel to Web & Database Hub</p>
-                </div>
-            </div>
-            <button class="theme-btn" onclick="toggleTheme()">Theme</button>
-        </header>
-
-        <div class="main-grid">
-            <!-- Left Panel: Excel & Inputs -->
-            <div class="card">
-                <h2>📱 1. Excel File & Inputs</h2>
-                
-                <div class="file-upload-box" onclick="simulateExcelUpload()">
-                    📂 Tap to Import Excel (.xlsx / .csv)
-                </div>
-
-                <div class="input-group">
-                    <label>Client Email</label>
-                    <input type="email" id="clientEmail" value="user@client.com">
-                </div>
-                <div class="input-group">
-                    <label>Item Description</label>
-                    <input type="text" id="desc" value="Calculation Web Model" oninput="runExcelLogic()">
-                </div>
-                <div class="input-group">
-                    <label>Quantity</label>
-                    <input type="number" id="qty" value="8" min="1" oninput="runExcelLogic()">
-                </div>
-                <div class="input-group">
-                    <label>Unit Price</label>
-                    <input type="number" id="price" value="75" min="0" oninput="runExcelLogic()">
-                </div>
-                <div class="input-group">
-                    <label>Currency</label>
-                    <select id="currency" onchange="runExcelLogic()">
-                        <option value="USD">USD ($)</option>
-                        <option value="EUR">EUR (€)</option>
-                        <option value="GBP">GBP (£)</option>
-                        <option value="PKR">PKR (Rs)</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Right Panel: Invoice & Signature -->
-            <div class="card">
-                <h2>🧾 2. Live Invoice & Signature</h2>
-                <div class="invoice-preview">
-                    <div class="inv-header">
-                        <h3 id="invTitle">INVOICE #APP-101</h3>
-                        <span id="invDate">2026-09-13</span>
-                    </div>
-                    <div class="inv-row">
-                        <span id="pDesc">Calculation Web Model</span>
-                        <span id="pQtyPrice">8 x 75</span>
-                    </div>
-                    <div class="inv-row">
-                        <span>Subtotal:</span>
-                        <span id="subtotal">600.00</span>
-                    </div>
-                    <div class="inv-row">
-                        <span>Tax / Formula:</span>
-                        <span id="taxAmount">30.00</span>
-                    </div>
-                    <div class="inv-total inv-row">
-                        <span>Total:</span>
-                        <span id="grandTotal">630.00 USD</span>
-                    </div>
-                </div>
-
-                <div class="sig-container">
-                    <label>App Signature Pad</label>
-                    <canvas id="sigCanvas"></canvas>
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="actions">
-                <button class="action-btn btn-calc" onclick="runExcelLogic()">Calculate</button>
-                <button class="action-btn btn-save" onclick="saveData()">Save DB</button>
-                <button class="action-btn btn-pdf" onclick="downloadPDF()">Get PDF</button>
-                <button class="action-btn btn-email" onclick="sendEmailInvoice()">Email</button>
-            </div>
-
-            <div class="status" id="statusMessage"></div>
-
-            <!-- History Table -->
-            <div class="history-section">
-                <h2>💾 Database Records</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Description</th>
-                            <th>Total</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historyTableBody">
-                        <tr>
-                            <td>#APP-100</td>
-                            <td>Financial Sheet</td>
-                            <td>$350.00</td>
-                            <td style="color: #10b981;">Synced ✅</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo"><i class="fa-solid fa-shield-dog"></i>IronGuard <span>Cane Corso</span></a>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#traits">Traits</a></li>
+                    <li><a href="#bloodline">Bloodline</a></li>
+                    <li><a href="#standards">Standards</a></li>
+                    <li><a href="#contact" class="btn">Reserve Puppy</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
-    </div>
+    </header>
 
-    <!-- Mobile App Bottom Navigation Bar -->
-    <div class="bottom-nav">
-        <div class="nav-item active">
-            <span>🏠</span>Home
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>The Ultimate Guardian: <span>Royalty & Strength</span></h1>
+                <p>Welcome to IronGuard Cane Corso. We breed exceptional Italian Mastiffs characterized by unrivaled loyalty, regal stature, and noble protection instincts.</p>
+                <div class="hero-btns">
+                    <a href="#bloodline" class="btn">View Bloodline</a>
+                    <a href="#contact" class="btn-outline">Inquire Now</a>
+                </div>
+            </div>
+            <div class="hero-badge">
+                <h3>Elite Italian Bloodlines</h3>
+                <p>Meticulously bred for structural soundness, stable temperament, and traditional working conformation.</p>
+            </div>
         </div>
-        <div class="nav-item" onclick="simulateExcelUpload()">
-            <span>📁</span>Import
-        </div>
-        <div class="nav-item" onclick="saveData()">
-            <span>☁️</span>Sync DB
-        </div>
-        <div class="nav-item" onclick="toggleTheme()">
-            <span>⚙️</span>Theme
-        </div>
-    </div>
+    </section>
 
+    <!-- Traits Section -->
+    <section class="section-padding" id="traits">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Cane Corso Legacy</h2>
+                <p>A powerful apex protector possessing intelligence, confidence, and intense devotion to family.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Supreme Protection</h3>
+                    <p>Natural guard dogs with an innate sense of territory, offering unmatched security and watchfulness.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-brain"></i>
+                    <h3>High Intelligence</h3>
+                    <p>Highly trainable and eager to work, responding exceptionally well to consistent, confident leadership.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Family Devotion</h3>
+                    <p>Deeply affectionate and gentle with family members, forming an unbreakable bond with their owners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bloodline / Gallery -->
+    <section class="section-padding gallery-section" id="bloodline">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sire & Dam Showcase</h2>
+                <p>Inspect our premier adult lines and upcoming champion litters.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1629851722915-467aef34d28d?auto=format&fit=crop&w=600&q=80" alt="Cane Corso Sire" class="gallery-img">
+                    <div class="gallery-info">
+                        <h3>Titan (Sire)</h3>
+                        <p>Black Brindle • Champion Line</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80" alt="Cane Corso Dam" class="gallery-img">
+                    <div class="gallery-info">
+                        <h3>Athena (Dam)</h3>
+                        <p>Formentino • Imported Bloodline</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=600&q=80" alt="Cane Corso Puppy" class="gallery-img">
+                    <div class="gallery-info">
+                        <h3>Current Litter</h3>
+                        <p>Available for Reservation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breed Standards Section -->
+    <section class="section-padding" id="standards">
+        <div class="container">
+            <div class="standards-grid">
+                <div class="standards-list">
+                    <div class="section-title" style="text-align: left; margin-bottom: 30px;">
+                        <h2>Breeding Standards</h2>
+                        <p style="margin: 0;">We uphold rigorous health and genetic criteria to preserve the integrity of the breed.</p>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-icon"><i class="fa-solid fa-notes-medical"></i></div>
+                        <div class="standard-text">
+                            <h3>Health Clearances</h3>
+                            <p>Rigorous veterinary screenings including hip and elbow evaluations, and cardiac clearances.</p>
+                        </div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                        <div class="standard-text">
+                            <h3>Early Socialization</h3>
+                            <p>Puppies are exposed to various environments, sounds, and stimuli from early weeks for balanced nerves.</p>
+                        </div>
+                    </div>
+                    <div class="standard-item">
+                        <div class="standard-icon"><i class="fa-solid fa-file-contract"></i></div>
+                        <div class="standard-text">
+                            <h3>Pedigree Registration</h3>
+                            <p>Full certified pedigree documentation provided with health guarantees for every puppy.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="standards-image">
+                    <img src="https://images.unsplash.com/photo-1561585973-206e12488a03?auto=format&fit=crop&w=800&q=80" alt="Cane Corso Guard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding contact-section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reservation & Inquiry</h2>
+                <p>Secure a spot for our upcoming litters or schedule a kennel consultation.</p>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Your reservation inquiry has been sent successfully. We will contact you soon.');">
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Phone Number / Location">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Tell us about your experience with large breeds or inquiry details..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Reservation Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IronGuard Cane Corso. All Rights Reserved. Designed for elite protection by <span>Prime Solutions</span>.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu -->
     <script>
-        // Hide Splash Screen after loading
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                setTimeout(() => splash.style.display = 'none', 500);
-            }, 1800);
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
-        const currencySymbols = { USD: '$', EUR: '€', GBP: '£', PKR: 'Rs ' };
-
-        function runExcelLogic() {
-            const desc = document.getElementById('desc').value;
-            const qty = parseFloat(document.getElementById('qty').value) || 0;
-            const price = parseFloat(document.getElementById('price').value) || 0;
-            const curr = document.getElementById('currency').value;
-            const symbol = currencySymbols[curr];
-
-            const sub = qty * price;
-            const tax = sub * 0.05;
-            const total = sub + tax;
-
-            document.getElementById('pDesc').innerText = desc || 'Item';
-            document.getElementById('pQtyPrice').innerText = `${qty} x ${price}`;
-            document.getElementById('subtotal').innerText = `${symbol}${sub.toFixed(2)}`;
-            document.getElementById('taxAmount').innerText = `${symbol}${tax.toFixed(2)}`;
-            document.getElementById('grandTotal').innerText = `${symbol}${total.toFixed(2)} ${curr}`;
-        }
-
-        function simulateExcelUpload() {
-            const status = document.getElementById('statusMessage');
-            status.innerHTML = "Parsing Excel formulas into app...";
-            status.style.color = "#f59e0b";
-            setTimeout(() => {
-                document.getElementById('desc').value = "Mobile Uploaded Excel Sheet";
-                document.getElementById('qty').value = "15";
-                document.getElementById('price').value = "120";
-                runExcelLogic();
-                status.innerHTML = "Excel sheet loaded successfully!";
-                status.style.color = "#10b981";
-            }, 900);
-        }
-
-        let appId = 101;
-        function saveData() {
-            const status = document.getElementById('statusMessage');
-            const desc = document.getElementById('desc').value;
-            const total = document.getElementById('grandTotal').innerText;
-
-            status.innerHTML = "Saving record to App Database...";
-            status.style.color = "#f59e0b";
-
-            setTimeout(() => {
-                status.innerHTML = "Successfully saved to Database!";
-                status.style.color = "#10b981";
-
-                const tbody = document.getElementById('historyTableBody');
-                const row = document.createElement('tr');
-                row.innerHTML = `<td>#APP-${appId}</td><td>${desc}</td><td>${total}</td><td style="color: #10b981;">Synced ✅</td>`;
-                tbody.prepend(row);
-                appId++;
-            }, 800);
-        }
-
-        function downloadPDF() {
-            const status = document.getElementById('statusMessage');
-            status.innerHTML = "Generating PDF receipt...";
-            status.style.color = "#6366f1";
-            setTimeout(() => {
-                status.innerHTML = "PDF downloaded successfully!";
-                status.style.color = "#10b981";
-            }, 1000);
-        }
-
-        function sendEmailInvoice() {
-            const email = document.getElementById('clientEmail').value;
-            const status = document.getElementById('statusMessage');
-            status.innerHTML = `Emailing invoice to ${email}...`;
-            status.style.color = "#ec4899";
-            setTimeout(() => {
-                status.innerHTML = `Invoice sent to ${email}!`;
-                status.style.color = "#10b981";
-            }, 1000);
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-        }
-
-        // Signature Canvas
-        const canvas = document.getElementById('sigCanvas');
-        const ctx = canvas.getContext('2d');
-        let painting = false;
-
-        canvas.addEventListener('mousedown', () => painting = true);
-        canvas.addEventListener('mouseup', () => { painting = false; ctx.beginPath(); });
-        canvas.addEventListener('mousemove', draw);
-
-        function draw(e) {
-            if (!painting) return;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#0f172a';
-            const rect = canvas.getBoundingClientRect();
-            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-            ctx.stroke();
-            ctx.beginPath();
-            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-        }
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
